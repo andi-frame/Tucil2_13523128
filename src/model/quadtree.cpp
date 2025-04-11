@@ -19,7 +19,17 @@ QuadTree::~QuadTree() { delete root; }
 
 QuadNode *QuadTree::compress(int x, int y, int width, int height) {
     auto block = image->getBlock(x, y, width, height);
-    double error = computeError(block, method);
+    ImageMatrix reconstructed;
+
+    if (method == SSIM) {
+        Pixel avg = averageColor(block);
+        reconstructed =
+            ImageMatrix(block.size(), std::vector<Pixel>(block[0].size(), avg));
+    }
+
+    double error = (method == SSIM)
+                       ? computeError(block, method, &reconstructed)
+                       : computeError(block, method, nullptr);
 
     if (error <= threshold || (width * height) <= minBlockSize) {
         auto node = new QuadNode(x, y, width, height);
@@ -29,7 +39,6 @@ QuadNode *QuadTree::compress(int x, int y, int width, int height) {
     }
 
     auto node = new QuadNode(x, y, width, height);
-
     int halfW = width / 2;
     int halfH = height / 2;
 
