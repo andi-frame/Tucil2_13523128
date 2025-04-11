@@ -14,4 +14,5 @@ struct AverageColor {
 };
 
 double computeError(const ImageMatrix &block, ErrorMethod method);
+Pixel averageColor(const ImageMatrix &block);
 AverageColor computeAverageColor(const ImageMatrix &block);

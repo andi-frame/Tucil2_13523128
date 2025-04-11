@@ -2,6 +2,25 @@
 #include <cmath>
 #include <map>
 
+// untuk node (in pixel)
+Pixel averageColor(const ImageMatrix &block) {
+    long r = 0, g = 0, b = 0;
+    int count = block.size() * block[0].size();
+
+    for (const auto &row : block)
+        for (const auto &p : row) {
+            r += p.r;
+            g += p.g;
+            b += p.b;
+        }
+
+    return {static_cast<unsigned char>(r / count),
+            static_cast<unsigned char>(g / count),
+            static_cast<unsigned char>(b / count)};
+}
+
+
+// untuk kalkulasi error (in double)
 AverageColor computeAverageColor(const ImageMatrix &block) {
     long r = 0, g = 0, b = 0;
     int count = block.size() * block[0].size();
