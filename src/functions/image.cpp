@@ -61,11 +61,11 @@ bool Image::save(const string &path) {
     return success;
 }
 
-ImageMatrix Image::getBlock(int x, int y, int blockSize) {
+ImageMatrix Image::getBlock(int x, int y, int blockWidth, int blockHeight) {
     ImageMatrix block;
-    for (int i = 0; i < blockSize; ++i) {
+    for (int i = 0; i < blockHeight; ++i) {
         vector<Pixel> row;
-        for (int j = 0; j < blockSize; ++j) {
+        for (int j = 0; j < blockWidth; ++j) {
             if (y + i < height && x + j < width)
                 row.push_back(data[y + i][x + j]);
             else
@@ -76,9 +76,10 @@ ImageMatrix Image::getBlock(int x, int y, int blockSize) {
     return block;
 }
 
-void Image::fillBlock(int x, int y, int blockSize, Pixel color) {
-    for (int i = 0; i < blockSize; ++i) {
-        for (int j = 0; j < blockSize; ++j) {
+void Image::fillBlock(int x, int y, int blockWidth, int blockHeight,
+                      Pixel color) {
+    for (int i = 0; i < blockHeight; ++i) {
+        for (int j = 0; j < blockWidth; ++j) {
             if (y + i < height && x + j < width) data[y + i][x + j] = color;
         }
     }

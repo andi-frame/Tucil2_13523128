@@ -4,12 +4,12 @@
 using namespace std;
 
 struct QuadNode {
-    int x, y, size;
+    int x, y, width, height;
     Pixel color;
     bool isLeaf;
     QuadNode *children[4];
 
-    QuadNode(int x, int y, int size);
+    QuadNode(int x, int y, int width, int height);
     ~QuadNode();
 };
 
@@ -21,7 +21,7 @@ private:
     double threshold;
     int minBlockSize;
 
-    QuadNode *compress(int x, int y, int size);
+    QuadNode *compress(int x, int y, int width, int height);
 
 public:
     QuadTree(Image *img, ErrorMethod method, double threshold,

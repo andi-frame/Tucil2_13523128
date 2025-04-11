@@ -16,6 +16,7 @@ public:
 
     bool load(const string &path);
     bool save(const string &path);
-    ImageMatrix getBlock(int x, int y, int blockSize);
-    void fillBlock(int x, int y, int blockSize, Pixel color);
+
+    ImageMatrix getBlock(int x, int y, int blockWidth, int blockHeight);
+    void fillBlock(int x, int y, int blockWidth, int blockHeight, Pixel color);
 };
