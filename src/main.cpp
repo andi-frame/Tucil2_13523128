@@ -42,7 +42,7 @@ int main() {
     cout << "[INPUT] absolute result gif path: ";
     cin >> outputGifPath;
 
-    cout << endl << endl;
+    cout << endl << "Loading..." << endl;
 
     // Process
     Image image;
@@ -78,6 +78,7 @@ int main() {
     auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
 
     // Outputs
+    cout << "Gambar berhasil dikompresi!" << endl;
     cout << "[OUTPUT] waktu eksekusi: " << duration.count() << "ms\n";
     cout << "[OUTPUT] ukuran gambar sebelum: " << sizeBefore << " bytes\n";
     cout << "[OUTPUT] ukuran gambar setelah: " << sizeAfter << " bytes\n";
